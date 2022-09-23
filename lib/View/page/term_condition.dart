@@ -1,3 +1,4 @@
+import 'package:conditional_builder_null_safety/conditional_builder_null_safety.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
@@ -24,9 +25,20 @@ class Term_Condition extends StatelessWidget {
               title: Text('trems&condition',style: TextStyle(color: Colors.black),),
 
             ),
-            body: SafeArea(
-              child: Html(data:termConditionCubit.termsModel!.data?.terms,
+            body: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: Container(
+                width: double.infinity,
+                height: 500,
+                child: ConditionalBuilder(
+                  condition: (termConditionCubit.termsModel !=null),
+                  builder: (context)=>Html(data:termConditionCubit.termsModel!.data?.terms,
 
+                  ),
+                  fallback: (context)=>Center(
+                    child: CircularProgressIndicator(color: Colors.deepOrange,),
+                  ),
+                ),
               ),
             ),
           );
