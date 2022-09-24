@@ -2,34 +2,49 @@ import 'package:easy_splash_screen/easy_splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:workshop/View/page/login.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-class SplashScreen extends StatefulWidget {
-  const SplashScreen({Key? key}) : super(key: key);
+import 'dart:async';
 
+
+class MyHomePage extends StatefulWidget {
   @override
-  State<SplashScreen> createState() => _SplashScreenState();
+  SplashScreenState createState() => SplashScreenState();
 }
-
-class _SplashScreenState extends State<SplashScreen> {
+class SplashScreenState extends State<MyHomePage> {
+  @override
+  void initState() {
+    super.initState();
+    Timer(Duration(seconds: 5),
+            ()=>Navigator.pushReplacement(context,
+            MaterialPageRoute(builder:
+                (context) => LoginScreen()
+            )
+        )
+    );
+  }
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: double.infinity,
-      width: double.infinity,
-      child: EasySplashScreen(
-        logo: Image.asset(
-          'image/logo.png',
-          height: double.infinity,
-          width: double.infinity,
-
-
-            ),
-        backgroundColor: Colors.grey.shade400,
-        showLoader: true,
-        loadingText: Text("Loading..."),
-        navigator: LoginScreen(),
-        durationInSeconds: 5,
+      color: Colors.white,
+      child:Stack(
+        children: [
+          Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Image.asset('image/logo.png'),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 50.0),
+                child: LinearProgressIndicator(
+                  color: Colors.deepOrange,
+                  //value:,
+                ),
+              ),
+            ],
+          ),
+        ],
       ),
-    );;
+
+    );
   }
+
 }
 

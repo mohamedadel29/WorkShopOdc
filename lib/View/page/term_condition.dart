@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_html/flutter_html.dart';
+import 'package:workshop/View/page/settings.dart';
 import 'package:workshop/viewmodel/Term_Condition/term_condition_cubit.dart';
 
 class Term_Condition extends StatelessWidget {
@@ -22,6 +23,13 @@ class Term_Condition extends StatelessWidget {
           return Scaffold(
             appBar: AppBar(
               centerTitle: true,
+              backgroundColor: Colors.white,
+              leading: InkWell(
+                onTap: (){
+                  Navigator.push(context,MaterialPageRoute(builder: (context) => SettingsScreen(),));
+
+                },
+                  child: Icon(Icons.arrow_back_ios,color: Colors.deepOrange,)),
               title: Text('trems&condition',style: TextStyle(color: Colors.black),),
 
             ),

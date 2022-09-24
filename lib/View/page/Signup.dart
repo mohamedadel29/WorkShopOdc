@@ -2,6 +2,7 @@ import 'package:conditional_builder_null_safety/conditional_builder_null_safety.
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:workshop/View/componet/core.dart';
+import 'package:workshop/View/page/dropdown.dart';
 import 'package:workshop/View/page/home.dart';
 import 'package:workshop/View/page/login.dart';
 import 'package:workshop/View/page/navbar.dart';
@@ -101,18 +102,42 @@ class SignUp extends StatelessWidget {
                   SizedBox(height: 20,),
                   defualtTextFormField(controller:phonecontroller,validate: (String? value){if(value!.isEmpty){return 'enter your phone';}}, hint: 'phone Number'),
                   SizedBox(height: 20,),
-                  DropdownMenuItem(
-                    value: list,
-                      child:  Text(
-                        "${list}",
-                        style: const TextStyle(
-                          fontSize: 14,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                        ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0),
+                        child: Text('Gender',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 150.0),
+                        child: Text('Universy',style: TextStyle(fontSize: 20,fontWeight:FontWeight.bold ),),
+                      )
+                    ],
                   ),
+                  Row(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left: 30.0),
+                        child: DropdownButtonExample(),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left: 160),
+                        child: DropdownButtonExample2(),
+                      )
+                    ],
                   ),
-                  SizedBox(height: 20,),
+                  Column(
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Text('Grade',style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child:DropdownButtonExample3(),
+                      ),
+                    ],
+                  ),
                   ConditionalBuilder(
                     condition: state is! RegisterLoadingState,
                     builder: (context
